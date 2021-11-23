@@ -11,5 +11,6 @@ public class DataStreamDemo {
         int sum = menu.stream()
                 .mapToInt(Dish::getCalories).sum();
         System.out.println(sum);
+
     }
 }
