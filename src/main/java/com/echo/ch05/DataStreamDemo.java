@@ -14,6 +14,7 @@ public class DataStreamDemo {
         int sum = menu.stream()
                 .mapToInt(Dish::getCalories).sum();
         System.out.println(sum);
+
         //将数值流转换为Stream
         IntStream intStream = menu.stream().mapToInt(Dish::getCalories);
         Stream<Integer> boxed = intStream.boxed();
