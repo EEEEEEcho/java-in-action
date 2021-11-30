@@ -1,4 +1,4 @@
-package com.echo.ch06add;
+package com.echo.ch06;
 
 import com.echo.ch04.CaloricLevel;
 import com.echo.ch04.Dish;
