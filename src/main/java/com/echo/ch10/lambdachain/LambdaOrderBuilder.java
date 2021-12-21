@@ -51,6 +51,6 @@ public class LambdaOrderBuilder {
                     s.market("NASDAQ");
                 });
             });
-        })
+        });
     }
 }
