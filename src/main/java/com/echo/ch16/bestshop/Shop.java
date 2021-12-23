@@ -44,7 +44,9 @@ public class Shop {
 
     private double calculatePrice(String product){
         //延时1秒
-        DelayUtil.delay();
+        //.delay();
+        //随机延迟
+        DelayUtil.randomDelay();
         //返回计算结果
         return new Random().nextDouble() * product.charAt(0) + product.charAt(1);
     }

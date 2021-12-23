@@ -4,6 +4,8 @@ import com.echo.ch16.bestshop.PriceFinder;
 import com.echo.ch16.bestshop.PriceFinderWithCode;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,9 +45,15 @@ public class Main {
 
         PriceFinderWithCode pfw = new PriceFinderWithCode();
         long start = System.nanoTime();
-        List<String> phones = pfw.findPrices("myPhone27s");
-        System.out.println(phones);
+        //List<String> phones = pfw.findPrices("myPhone27s");
+        //List<String> phones = pfw.findPricesByExecutor("myPhone27s");
+        //System.out.println(phones);
+        Stream<CompletableFuture<String>> pricesStream = pfw.findPricesStream("myPhone27s");
+        //在每个CompletableFuture上注册一个操作，该操作会在CompletableFuture完成执行后使用它的返回值
+        CompletableFuture[] completableFutures = pricesStream.map(future -> future.thenAccept(System.out::println))
+                .toArray(size -> new CompletableFuture[size]);
+        CompletableFuture.allOf(completableFutures).join();
         long duration = ((System.nanoTime() - start) / 1_000_000);
-        System.out.println(duration);
+        //System.out.println(duration);
     }
 }
